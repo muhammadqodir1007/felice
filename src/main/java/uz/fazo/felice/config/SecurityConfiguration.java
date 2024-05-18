@@ -1,6 +1,5 @@
 package uz.fazo.felice.config;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +18,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 import static uz.fazo.felice.user.Role.ADMIN;
-import static uz.fazo.felice.user.Role.DISTRICT;
 
 @Configuration
 @EnableWebSecurity
@@ -33,9 +31,7 @@ public class SecurityConfiguration {
                     "/api/excel/**",
                     "/api/images/**",
                     "/api/abouts/**",
-
                     "/api-docs/**",
-
                     "/swagger-ui/**",
                     "/api/user-tests/**",
                     "/uploadFile/**",
@@ -63,8 +59,13 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/problems/user/**", "/api/accounting/user/**", "/api/statistics/user/**", "/api/members/user/**", "/api/materials/user/**"
-                                        , "/api/events/user/**", "/api/clients/user/**", "/api/articles/user/**", "/api/materials/user/**").hasAnyRole(DISTRICT.name(), ADMIN.name())
+                                .requestMatchers(HttpMethod.PATCH, "/api/menus/**", "/api/abouts/**", "/api/contacts/**", "/api/feedbacks/**"
+                                ).hasAnyRole(ADMIN.name())
+                                .requestMatchers(HttpMethod.DELETE, "/api/menus/**", "/api/abouts/**", "/api/contacts/**", "/api/feedbacks/**"
+                                ).hasAnyRole(ADMIN.name())
+                                .requestMatchers(HttpMethod.POST, "/api/menus/**", "/api/abouts/**", "/api/contacts/**", "/api/feedbacks/**"
+                                ).hasAnyRole(ADMIN.name())
+                                .requestMatchers(GET, "/api/menus/**", "/api/abouts/**", "/api/contacts/**", "/api/feedbacks/**").permitAll()
                                 .requestMatchers(GET, "/api/users/**").hasRole(ADMIN.name())
                                 .anyRequest().authenticated()
                 )
