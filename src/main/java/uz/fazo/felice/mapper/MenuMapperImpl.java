@@ -14,6 +14,8 @@ public class MenuMapperImpl implements MenuMapper {
         MenuDto menuDto = new MenuDto();
         menuDto.setId(menu.getId());
         menuDto.setName(menu.getName());
+        menuDto.setUrl(menu.getUrl());
+        menuDto.setDescription(menu.getDescription());
         menuDto.setPrice(menuDto.getPrice());
         menuDto.setUrl(menu.getUrl());
         return menuDto;
@@ -25,6 +27,8 @@ public class MenuMapperImpl implements MenuMapper {
         Menu menu = new Menu();
         menu.setId(menuDto.getId());
         menu.setName(menuDto.getName());
+        menu.setPrice(menuDto.getPrice());
+        menu.setDescription(menuDto.getDescription());
         menu.setUrl(menuDto.getUrl());
         menu.setPrice(menuDto.getPrice());
         return menu;
