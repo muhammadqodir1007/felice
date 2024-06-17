@@ -17,8 +17,8 @@ public class ContactMapperImpl implements ContactMapper {
         if (contact == null) return null;
         ContactDto contactDto = new ContactDto();
         contactDto.setId(contact.getId());
-        contactDto.setEmail(contactDto.getEmail());
-        contactDto.setPhone(contactDto.getPhone());
+        contactDto.setEmail(contact.getEmail());
+        contactDto.setPhone(contact.getPhone());
         return contactDto;
     }
 

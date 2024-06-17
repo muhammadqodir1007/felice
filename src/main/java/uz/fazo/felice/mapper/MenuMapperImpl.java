@@ -16,7 +16,7 @@ public class MenuMapperImpl implements MenuMapper {
         menuDto.setName(menu.getName());
         menuDto.setUrl(menu.getUrl());
         menuDto.setDescription(menu.getDescription());
-        menuDto.setPrice(menuDto.getPrice());
+        menuDto.setPrice(menu.getPrice());
         menuDto.setUrl(menu.getUrl());
         return menuDto;
     }
